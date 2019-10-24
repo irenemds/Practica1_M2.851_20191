@@ -56,6 +56,16 @@ def get_all_book_info (book_url):
             returnValue[nextSibling.span.string] = value
     return returnValue
 
+def get_updated_score(book_url):
+    returnValue = None
+    html_content = get_HTML(book_url)
+    soup = BeautifulSoup(html_content, 'html.parser')
+    book_info = soup.find("div", class_="libro_info")
+    average_score = book_info.find("div", class_="estadisticas").span.string
+    returnValue = average_score
+
+    return returnValue
+
 latest_releases = get_latest_releases(URL)
 print (latest_releases)
 for index, book in enumerate(latest_releases,start=0):
