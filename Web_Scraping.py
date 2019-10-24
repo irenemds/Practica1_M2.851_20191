@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from csv_files import save_json_as_csv
 
 URL = "http://quelibroleo.hola.com/novedades"
 
@@ -61,4 +62,4 @@ for index, book in enumerate(latest_releases,start=0):
    book_info = get_all_book_info(book["URL"])
    latest_releases[index].update(book_info)
 print(latest_releases)
-#print (book_info)
+save_json_as_csv(latest_releases)
